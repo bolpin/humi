@@ -1,19 +1,25 @@
-# Prerequisites
-
-Docker
-Docker-compose
-
 # Quickstart
 
+## Docker
+
 ```
-docker-compose run web rake db:create
-docker-compose run web rake db:migrate
-docker-compose run web rake db:seed
+docker-compose run web rails db:create
+docker-compose run web rails db:migrate
+docker-compose run web rails db:seed
 docker-compose up
 ```
 navigate to `localhost:3000`
 (user credentials: see db/seeds.rb)
 
+
+## Local (requires postgres)
+
+```
+rails db:create
+rails db:migrate
+rails db:seed
+rails server
+```
 
 # Running tests
 
@@ -24,7 +30,8 @@ rspec
 # TODO
 
 must-haves:
-- roles for users (admin or partner-grant-manager)
+- roles for users (admin or partner-grant-manager) -- use cancancan?
+- interface for admins to create and edit user roles and partner associations
 - interface to link users to a parnter (or partners?)
 - models for grants, disbursements, donations
 - partner form for donations
@@ -43,7 +50,7 @@ nice-to-haves:
 - RDS Postgres deployment/configuration (Ops)
 
 
-(If interested in steps to do initial app setup with docker, postgres, rspec, devise and activeadmin)[./README-INITIAL-APP-SETUP.ml]
+[If interested in steps to do initial app setup with docker, postgres, rspec, devise and activeadmin](./README-INITIAL-APP-SETUP.ml)
 
 # Possible Models
 ```
@@ -51,7 +58,12 @@ rails generate model Partner name:string address:string partner_number:string
 rails generate model Grant partner:references amount_cents:integer date:date case_management_percentage:integer
 rails generate model Donation grant:references donor:string date:date amount_cents:integer
 rails generate model Disbursement grant:references name:string date:date move_in_amount_cents:integer prevention_amount_cents:integer landlord:string number_children:integer
+```
+
+optional:
+```
 rails generate model Payment grant:references date:date check_number:integer amount_cents:integer approval:string donation_amount_cents:integer case_management_amount_cents:integer balance_amount_cents:integer
+
 rails generate model Estimate grant:references month_1_move_in_amount_cents:integer month_1_prevention_amount_cents:integer month_2_move_in_amount_cents:integer month_2_prevention_amount_cents:integer month_3_move_in_amount_cents:integer month_3_prevention_amount_cents:integer month_4_move_in_amount_cents:integer month_4_prevention_amount_cents:integer month_5_move_in_amount_cents:integer month_5_prevention_amount_cents:integer month_6_move_in_amount_cents:integer month_6_prevention_amount_cents:integer month_7_move_in_amount_cents:integer month_7_prevention_amount_cents:integer month_8_move_in_amount_cents:integer month_8_prevention_amount_cents:integer month_9_move_in_amount_cents:integer month_9_prevention_amount_cents:integer month_10_move_in_amount_cents:integer month_10_prevention_amount_cents:integer month_11_move_in_amount_cents:integer month_11_prevention_amount_cents:integer month_12_move_in_amount_cents:integer month_12_prevention_amount_cents:integer month_13_move_in_amount_cents:integer month_13_prevention_amount_cents:integer month_14_move_in_amount_cents:integer month_14_prevention_amount_cents:integer month_15_move_in_amount_cents:integer month_15_prevention_amount_cents:integer month_16_move_in_amount_cents:integer month_16_prevention_amount_cents:integer month_17_move_in_amount_cents:integer month_17_prevention_amount_cents:integer month_18_move_in_amount_cents:integer month_18_prevention_amount_cents:integer month_19_move_in_amount_cents:integer month_19_prevention_amount_cents:integer month_20_move_in_amount_cents:integer month_20_prevention_amount_cents:integer month_21_move_in_amount_cents:integer month_21_prevention_amount_cents:integer month_22_move_in_amount_cents:integer month_22_prevention_amount_cents:integer month_23_move_in_amount_cents:integer month_23_prevention_amount_cents:integer month_24_move_in_amount_cents:integer month_24_prevention_amount_cents:integer
 
 ```
