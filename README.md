@@ -1,24 +1,75 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Prerequisites
+Docker
+Docker-compose
 
-Things you may want to cover:
+# Getting started
 
-* Ruby version
+```
+docker-compose run web rake db:create
+docker-compose run web rake db:migrate
+docker-compose run web rake db:seed
+docker-compose up
+```
+navigate to `localhost:3000`
+(user credentials: see db/seeds.rb)
 
-* System dependencies
+# Running tests
 
-* Configuration
+```
+rspec
+```
 
-* Database creation
+# TODO
 
-* Database initialization
+must-haves:
+- authentication for users
+- interface to link users to partners (or grants?)
+- link to partner login
+- partner form for donations
+- partner form for disbursements
+- format money
+- format dates
 
-* How to run the test suite
+nice-to-haves:
+- postgres instead of sqlite3
+- grant performance report, in some form
+- audit trail model & migration
+- partner view for estimates
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+# Models
+```
+rails generate model Partner name:string address:string partner_number:string
+rails generate model Grant partner:references amount_cents:integer date:date case_management_percentage:integer
+rails generate model Donation grant:references donor:string date:date amount_cents:integer
+rails generate model Disbursement grant:references name:string date:date move_in_amount_cents:integer prevention_amount_cents:integer landlord:string number_children:integer
+rails generate model Payment grant:references date:date check_number:integer amount_cents:integer approval:string donation_amount_cents:integer case_management_amount_cents:integer balance_amount_cents:integer
+rails generate model Estimate grant:references month_1_move_in_amount_cents:integer month_1_prevention_amount_cents:integer month_2_move_in_amount_cents:integer month_2_prevention_amount_cents:integer month_3_move_in_amount_cents:integer month_3_prevention_amount_cents:integer month_4_move_in_amount_cents:integer month_4_prevention_amount_cents:integer month_5_move_in_amount_cents:integer month_5_prevention_amount_cents:integer month_6_move_in_amount_cents:integer month_6_prevention_amount_cents:integer month_7_move_in_amount_cents:integer month_7_prevention_amount_cents:integer month_8_move_in_amount_cents:integer month_8_prevention_amount_cents:integer month_9_move_in_amount_cents:integer month_9_prevention_amount_cents:integer month_10_move_in_amount_cents:integer month_10_prevention_amount_cents:integer month_11_move_in_amount_cents:integer month_11_prevention_amount_cents:integer month_12_move_in_amount_cents:integer month_12_prevention_amount_cents:integer month_13_move_in_amount_cents:integer month_13_prevention_amount_cents:integer month_14_move_in_amount_cents:integer month_14_prevention_amount_cents:integer month_15_move_in_amount_cents:integer month_15_prevention_amount_cents:integer month_16_move_in_amount_cents:integer month_16_prevention_amount_cents:integer month_17_move_in_amount_cents:integer month_17_prevention_amount_cents:integer month_18_move_in_amount_cents:integer month_18_prevention_amount_cents:integer month_19_move_in_amount_cents:integer month_19_prevention_amount_cents:integer month_20_move_in_amount_cents:integer month_20_prevention_amount_cents:integer month_21_move_in_amount_cents:integer month_21_prevention_amount_cents:integer month_22_move_in_amount_cents:integer month_22_prevention_amount_cents:integer month_23_move_in_amount_cents:integer month_23_prevention_amount_cents:integer month_24_move_in_amount_cents:integer month_24_prevention_amount_cents:integer
 
-* ...
+```
+
+Workflow:
+1. Grant is applied for and created (Grants are two-years in duration, with a single payment made each year to match initial local donations) At this point, the Grant is created in the application, and any necessary user accounts for the partner are set up by an admin.
+1. Partner is required to find local donations for the initial $10K.  Details of these initial large donations are not recorded by this application.
+1. First (of two) annual grant payments are made to the partner (This payment is recorded by an admin)
+1. Partner makes monthly estimates of move-in and prevention amounts for the first year. (Recorded by partner)
+1. Each month, the partner continues to solicit more local donations (recorded as Donations by partner)
+1. Each month, the partner makes disbursements.  A disbursement is a payment from the partner to a local family in need.  (Recorded as Disbursements by partner)
+1. For the second year of the grant, the same pattern continues.
+1. After the second year the collaboration is over, pending an additional grant application.
+```
+
+Some setup you must do manually if you haven't yet:
+
+1. Ensure you have defined default url options in your environments files. Here
+	is an example of default_url_options appropriate for a development environment
+	in config/environments/development.rb:
+
+	config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+	In production, :host should be set to the actual host of your application.
+
+```
+rails generate active_admin:resource Partner
+etc.
