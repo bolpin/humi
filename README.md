@@ -29,17 +29,20 @@ rspec
 
 # TODO
 
-must-haves:
-- roles for users (admin or partner-grant-manager) -- use cancancan?
+priorities:
+- roles for users (admin or partner-grant-manager) -- cancancan?
 - interface for admins to create and edit user roles and partner associations
 - interface to link users to a parnter (or partners?)
 - models for grants, disbursements, donations
-- partner form for donations
-- partner form for disbursements
+- model and form for donations
+- model and form for disbursements
 - format money nicely
 - format dates nicely
+- monthly report view
 - test forgot password
-- test admin creates/edits users and user roles
+- test admin creates users
+- test admin edits user role
+- test admin resets a user password for them
 
 nice-to-haves:
 - audit trail model & migration
