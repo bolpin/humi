@@ -50,7 +50,7 @@ nice-to-haves:
 - RDS Postgres deployment/configuration (Ops)
 
 
-[If interested in steps to do initial app setup with docker, postgres, rspec, devise and activeadmin](./README-INITIAL-APP-SETUP.ml)
+[If interested in steps to do initial app setup with docker, postgres, rspec, devise and activeadmin](./README-INITIAL-APP-SETUP.md)
 
 # Possible Models
 ```
