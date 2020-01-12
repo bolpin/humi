@@ -1,9 +1,9 @@
-
 # Prerequisites
+
 Docker
 Docker-compose
 
-# Getting started
+# Quickstart
 
 ```
 docker-compose run web rake db:create
@@ -14,6 +14,7 @@ docker-compose up
 navigate to `localhost:3000`
 (user credentials: see db/seeds.rb)
 
+
 # Running tests
 
 ```
@@ -23,22 +24,28 @@ rspec
 # TODO
 
 must-haves:
-- authentication for users
-- interface to link users to partners (or grants?)
-- link to partner login
+- roles for users (admin or partner-grant-manager)
+- interface to link users to a parnter (or partners?)
+- models for grants, disbursements, donations
 - partner form for donations
 - partner form for disbursements
-- format money
-- format dates
+- format money nicely
+- format dates nicely
+- test forgot password
+- test admin creates/edits users and user roles
 
 nice-to-haves:
-- postgres instead of sqlite3
-- grant performance report, in some form
 - audit trail model & migration
-- partner view for estimates
+- model and form for estimates
+- as much reporting as time permits
+- export to CSV for grant reports, etc.?
+- database backups (Ops)
+- RDS Postgres deployment/configuration (Ops)
 
 
-# Models
+(If interested in steps to do initial app setup with docker, postgres, rspec, devise and activeadmin)[./README-INITIAL-APP-SETUP.ml]
+
+# Possible Models
 ```
 rails generate model Partner name:string address:string partner_number:string
 rails generate model Grant partner:references amount_cents:integer date:date case_management_percentage:integer
@@ -48,7 +55,6 @@ rails generate model Payment grant:references date:date check_number:integer amo
 rails generate model Estimate grant:references month_1_move_in_amount_cents:integer month_1_prevention_amount_cents:integer month_2_move_in_amount_cents:integer month_2_prevention_amount_cents:integer month_3_move_in_amount_cents:integer month_3_prevention_amount_cents:integer month_4_move_in_amount_cents:integer month_4_prevention_amount_cents:integer month_5_move_in_amount_cents:integer month_5_prevention_amount_cents:integer month_6_move_in_amount_cents:integer month_6_prevention_amount_cents:integer month_7_move_in_amount_cents:integer month_7_prevention_amount_cents:integer month_8_move_in_amount_cents:integer month_8_prevention_amount_cents:integer month_9_move_in_amount_cents:integer month_9_prevention_amount_cents:integer month_10_move_in_amount_cents:integer month_10_prevention_amount_cents:integer month_11_move_in_amount_cents:integer month_11_prevention_amount_cents:integer month_12_move_in_amount_cents:integer month_12_prevention_amount_cents:integer month_13_move_in_amount_cents:integer month_13_prevention_amount_cents:integer month_14_move_in_amount_cents:integer month_14_prevention_amount_cents:integer month_15_move_in_amount_cents:integer month_15_prevention_amount_cents:integer month_16_move_in_amount_cents:integer month_16_prevention_amount_cents:integer month_17_move_in_amount_cents:integer month_17_prevention_amount_cents:integer month_18_move_in_amount_cents:integer month_18_prevention_amount_cents:integer month_19_move_in_amount_cents:integer month_19_prevention_amount_cents:integer month_20_move_in_amount_cents:integer month_20_prevention_amount_cents:integer month_21_move_in_amount_cents:integer month_21_prevention_amount_cents:integer month_22_move_in_amount_cents:integer month_22_prevention_amount_cents:integer month_23_move_in_amount_cents:integer month_23_prevention_amount_cents:integer month_24_move_in_amount_cents:integer month_24_prevention_amount_cents:integer
 
 ```
-
 Workflow:
 1. Grant is applied for and created (Grants are two-years in duration, with a single payment made each year to match initial local donations) At this point, the Grant is created in the application, and any necessary user accounts for the partner are set up by an admin.
 1. Partner is required to find local donations for the initial $10K.  Details of these initial large donations are not recorded by this application.
@@ -68,8 +74,10 @@ Some setup you must do manually if you haven't yet:
 
 	config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-	In production, :host should be set to the actual host of your application.
+	TODO: In production, :host should be set to the actual host of your application.
 
 ```
 rails generate active_admin:resource Partner
 etc.
+
+
