@@ -5,7 +5,7 @@ services:
   web:
     build: .
     volumes:
-      - .:/produciton
+      - .:/humi
     ports:
       - "3000:3000"
     environment:

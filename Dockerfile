@@ -2,7 +2,7 @@
 FROM ruby:2.7.0
 
 # Setup environment variables that will be available to the instance
-ENV APP_HOME /produciton
+ENV APP_HOME /humi
 
 # Installation of dependencies
 RUN apt-get update -qq \
