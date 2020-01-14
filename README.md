@@ -1,18 +1,5 @@
 # Quickstart
 
-## Docker
-
-```
-docker-compose build
-docker-compose run web rails db:create
-docker-compose run web rails db:migrate
-docker-compose run web rails db:seed
-docker-compose up
-```
-navigate to `localhost:3000`
-(user credentials: see db/seeds.rb)
-
-
 ## Local (requires postgres)
 
 ```
@@ -20,6 +7,19 @@ rails db:create
 rails db:migrate
 rails db:seed
 rails server
+```
+
+navigate to `localhost:3000`
+For user credentials see db/seeds.rb.
+
+## Docker
+TODO: figure out how to properly install node and yarn in Dockerfile.  When that is done, we should be able to:
+```
+docker-compose build
+docker-compose run web rails db:create
+docker-compose run web rails db:migrate
+docker-compose run web rails db:seed
+docker-compose up
 ```
 
 # Running tests
