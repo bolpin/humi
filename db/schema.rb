@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_190741) do
+ActiveRecord::Schema.define(version: 2020_01_14_195647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,39 @@ ActiveRecord::Schema.define(version: 2020_01_12_190741) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "disbursements", force: :cascade do |t|
+    t.bigint "grant_id", null: false
+    t.string "name"
+    t.date "date"
+    t.integer "move_in_amount_cents"
+    t.integer "prevention_amount_cents"
+    t.string "landlord"
+    t.integer "number_children"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grant_id"], name: "index_disbursements_on_grant_id"
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.bigint "grant_id", null: false
+    t.string "donor"
+    t.date "date"
+    t.integer "amount_cents"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grant_id"], name: "index_donations_on_grant_id"
+  end
+
+  create_table "grants", force: :cascade do |t|
+    t.bigint "partner_id", null: false
+    t.integer "amount_cents"
+    t.date "date"
+    t.integer "case_management_percentage"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["partner_id"], name: "index_grants_on_partner_id"
   end
 
   create_table "partners", force: :cascade do |t|
@@ -49,4 +82,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_190741) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "disbursements", "grants"
+  add_foreign_key "donations", "grants"
+  add_foreign_key "grants", "partners"
 end
