@@ -5,7 +5,7 @@ ActiveAdmin.register Donation do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :grant_id, :donor, :date, :amount_cents
+  permit_params :grant_id, :donor, :date, :amount_cents
   #
   # or
   #

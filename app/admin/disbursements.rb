@@ -5,7 +5,7 @@ ActiveAdmin.register Disbursement do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :grant_id, :name, :date, :move_in_amount_cents, :prevention_amount_cents, :landlord, :number_children
+  permit_params :grant_id, :name, :date, :move_in_amount_cents, :prevention_amount_cents, :landlord, :number_children
   #
   # or
   #

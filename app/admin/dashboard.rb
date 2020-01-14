@@ -11,22 +11,31 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
+      column do
+        panel "Recent Donations" do
+          ul do
+            Donation.last(5).map do |donation|
+              li link_to(donation.amount_cents, admin_donation_path(donation))
+            end
+          end
+        end
+      end
+      column do
+        panel "Recent Disbursements" do
+          ul do
+            Disbursement.last(5).map do |disbursement|
+              li link_to("Move-in #{disbursement.move_in_amount_cents}/Prevention #{disbursement.prevention_amount_cents}", admin_disbursement_path(disbursement))
+            end
+          end
+        end
+      end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+      column do
+        panel "Info" do
+          para "Welcome, HUMI Administrator."
+        end
+      end
+    end
   end # content
 end
