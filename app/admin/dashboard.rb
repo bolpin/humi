@@ -9,14 +9,21 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
     columns do
+      column do
+        panel "Grants" do
+          ul do
+            Grant.last(20).map do |grant|
+              li link_to(grant.partner.name, admin_grant_path(grant))
+            end
+          end
+        end
+      end
       column do
         panel "Recent Donations" do
           ul do
             Donation.last(5).map do |donation|
-              li link_to(donation.amount_cents, admin_donation_path(donation))
+              li link_to("#{donation.grant.partner.name}#{donation.grant.id} #{donation.amount_cents}", admin_donation_path(donation))
             end
           end
         end
@@ -25,7 +32,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Disbursements" do
           ul do
             Disbursement.last(5).map do |disbursement|
-              li link_to("Move-in #{disbursement.move_in_amount_cents}/Prevention #{disbursement.prevention_amount_cents}", admin_disbursement_path(disbursement))
+              li link_to("#{disbursement.grant.partner.name}#{disbursement.grant.id} #{disbursement.move_in_amount_cents}/#{disbursement.prevention_amount_cents}", admin_disbursement_path(disbursement))
             end
           end
         end
