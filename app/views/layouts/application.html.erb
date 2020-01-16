@@ -18,6 +18,9 @@
     <% else %>
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
+
+    <%= link_to "Admin Dashboard", admin_root_path %>
+    <%= link_to "My Disbursements", disbursements_path %>
     </p>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
