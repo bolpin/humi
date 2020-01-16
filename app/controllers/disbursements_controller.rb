@@ -14,7 +14,7 @@ class DisbursementsController < ApplicationController
 
   # GET /disbursements/new
   def new
-    @disbursement = Disbursement.new
+    @disbursement = Disbursement.new(grant: default_grant)
   end
 
   # GET /disbursements/1/edit
@@ -24,7 +24,7 @@ class DisbursementsController < ApplicationController
   # POST /disbursements
   # POST /disbursements.json
   def create
-    @disbursement = Disbursement.new(disbursement_params)
+    @disbursement = Disbursement.new(disbursement_params.merge({grant: default_grant}))
 
     respond_to do |format|
       if @disbursement.save
@@ -69,6 +69,10 @@ class DisbursementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disbursement_params
-      params.fetch(:disbursement, {})
+      params.require(:disbursement).permit(:number_children, :name, :landlord, :move_in_amount_cents, :prevention_amount_cents)
+    end
+
+    def default_grant
+      current_user.partner.grants.first
     end
 end

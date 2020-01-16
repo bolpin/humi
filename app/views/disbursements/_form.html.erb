@@ -11,6 +11,34 @@
     </div>
   <% end %>
 
+
+  <ul>
+    <li>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </li>
+    <li>
+      <%= form.label :landlord %>
+      <%= form.text_field :landlord %>
+    </li>
+    <!-- <li> -->
+    <!--   <%= form.label :date %> -->
+    <!--   <%= form.text_field :date %> -->
+    <!-- </li> -->
+    <li>
+      <%= form.label :number_children %>
+      <%= form.text_field :number_children %>
+    </li>
+    <li>
+      <%= form.label :move_in_amount %>
+      <%= form.text_field :move_in_amount %>
+    </li>
+    <li>
+      <%= form.label :prevention_amount %>
+      <%= form.text_field :prevention_amount %>
+    </li>
+  </ul>
+
   <div class="actions">
     <%= form.submit %>
   </div>

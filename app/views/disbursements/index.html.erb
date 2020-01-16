@@ -19,12 +19,12 @@
   <tbody>
     <% @disbursements.each do |disbursement| %>
       <tr>
-        <td><%= grant.name %></td>
-        <td><%= name %></td>
-        <td><%= landlord %></td>
-        <td><%= number_children %></td>
-        <td><%= move_in_amount_cents %></td>
-        <td><%= prevention_amount_cents %></td>
+        <td><%= disbursement.grant.name %></td>
+        <td><%= disbursement.name %></td>
+        <td><%= disbursement.landlord %></td>
+        <td><%= disbursement.number_children %></td>
+        <td><%= disbursement.move_in_amount_cents %></td>
+        <td><%= disbursement.prevention_amount_cents %></td>
         <td><%= link_to 'Show', disbursement %></td>
         <td><%= link_to 'Edit', edit_disbursement_path(disbursement) %></td>
         <td><%= link_to 'Destroy', disbursement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
