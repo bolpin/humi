@@ -1,0 +1,31 @@
+<%= form_with(model: donation, local: true) do |form| %>
+  <% if donation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+
+      <ul>
+        <% donation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <ul>
+    <li>
+      <%= form.label :donor %>
+      <%= form.text_field :donor %>
+    </li>
+    <li>
+      <%= form.label :date %>
+      <%= form.date_field :date %>
+    </li>
+    <li>
+      <%= form.label :amount, "Amount" %>
+      <%= form.number_field :amount, min: "0.01", step: "0.01" %>
+    </li>
+  </ul>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
