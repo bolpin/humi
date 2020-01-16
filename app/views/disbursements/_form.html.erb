@@ -1,0 +1,17 @@
+<%= form_with(model: disbursement, local: true) do |form| %>
+  <% if disbursement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(disbursement.errors.count, "error") %> prohibited this disbursement from being saved:</h2>
+
+      <ul>
+        <% disbursement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
