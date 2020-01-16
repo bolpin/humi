@@ -22,7 +22,7 @@
         <td><%= donation.id %></td>
         <td><%= donation.donor %></td>
         <td><%= donation.date %></td>
-        <td><%= currency_amount(donation.amount) %></td>
+        <td><%= donation.amount.format %></td>
         <td><%= donation.created_at %></td>
         <td><%= link_to 'Show', donation %></td>
         <td><%= link_to 'Edit', edit_donation_path(donation) %></td>

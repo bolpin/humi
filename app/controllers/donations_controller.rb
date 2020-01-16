@@ -16,7 +16,7 @@ class DonationsController < ApplicationController
 
   # GET /donations/new
   def new
-    @donation = Donation.new
+    @donation = Donation.new(grant: @grant)
   end
 
   # GET /donations/1/edit
@@ -76,6 +76,6 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.fetch(:donation, {})
+      params.require(:donation).permit(:donor, :date, :amount)
     end
 end
