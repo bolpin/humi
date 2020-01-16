@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Disbursements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @disbursements.each do |disbursement| %>
+      <tr>
+        <td><%= link_to 'Show', disbursement %></td>
+        <td><%= link_to 'Edit', edit_disbursement_path(disbursement) %></td>
+        <td><%= link_to 'Destroy', disbursement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Disbursement', new_disbursement_path %>
