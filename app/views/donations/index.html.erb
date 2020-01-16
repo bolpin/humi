@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Donations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th>ID</th>
+      <th>Donor</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Created At</th>
+    </tr>
+    <% @donations.each do |donation| %>
+      <tr>
+        <td><%= donation.id %></td>
+        <td><%= donation.donor %></td>
+        <td><%= donation.date %></td>
+        <td><%= donation.amount.format %></td>
+        <td><%= donation.created_at %></td>
+        <td><%= link_to 'Show', donation %></td>
+        <td><%= link_to 'Edit', edit_donation_path(donation) %></td>
+        <td><%= link_to 'Destroy', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Donation', new_donation_path %>
