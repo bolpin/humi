@@ -10,8 +10,20 @@
   </thead>
 
   <tbody>
+    <tr>
+      <th>ID</th>
+      <th>Donor</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Created At</th>
+    </tr>
     <% @donations.each do |donation| %>
       <tr>
+        <td><%= donation.id %></td>
+        <td><%= donation.donor %></td>
+        <td><%= donation.date %></td>
+        <td><%= currency_amount(donation.amount) %></td>
+        <td><%= donation.created_at %></td>
         <td><%= link_to 'Show', donation %></td>
         <td><%= link_to 'Edit', edit_donation_path(donation) %></td>
         <td><%= link_to 'Destroy', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

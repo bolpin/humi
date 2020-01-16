@@ -1,10 +1,11 @@
 class DonationsController < ApplicationController
   before_action :set_donation, only: %i(show edit update destroy)
+  before_action :set_grant
 
   # GET /donations
   # GET /donations.json
   def index
-    @donations = current_user.partner.grant.donations.all
+    @donations = @grant.donations
   end
 
   # GET /donations/1
@@ -64,8 +65,8 @@ class DonationsController < ApplicationController
   end
 
   private
-    def grants
-      @grants = current_user.partner.grants
+    def set_grant
+      @grant = grant
     end
 
     # Use callbacks to share common setup or constraints between actions.

@@ -1,5 +1,6 @@
 class Grant < ApplicationRecord
   belongs_to :partner
+  has_many :donations
 
   monetize :amount_cents
 
