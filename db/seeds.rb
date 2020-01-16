@@ -25,3 +25,7 @@ g2 = Grant.create!(partner: p2, amount_cents: 1000000, date: DateTime.now, case_
 Donation.create!(grant: g1, donor: 'Andrew S.', amount_cents: 10000, date: DateTime.now)
 Donation.create!(grant: g1, donor: 'Brian O.', amount_cents: 20000, date: DateTime.now)
 Donation.create!(grant: g2, donor: 'Travis S.', amount_cents: 20000, date: DateTime.now)
+
+# Disbursements
+Disbursement.create!(grant: g1, name: 'Olpin Family', landlord: 'Johnny Rose', move_in_amount_cents: 10000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now)
+Disbursement.create!(grant: g1, name: 'Rain Family', landlord: 'Riverview Suites', move_in_amount_cents: 2000, prevention_amount_cents: 20000, number_children: 1, date: DateTime.now)
