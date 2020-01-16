@@ -13,7 +13,7 @@ navigate to `localhost:3000`
 For user credentials see db/seeds.rb.
 
 ## Docker
-TODO: figure out how to properly install node and yarn in Dockerfile.  When that is done, we should be able to:
+TODO: figure out how to properly install node and yarn in Dockerfile.  When that is done, we should be able to do the following:
 ```
 docker-compose build
 docker-compose run web rails db:create
