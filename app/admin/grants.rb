@@ -5,7 +5,7 @@ ActiveAdmin.register Grant do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :partner_id, :amount_cents, :date, :case_management_percentage
+  permit_params :partner_id, :amount, :date, :case_management_percentage
   #
   # or
   #

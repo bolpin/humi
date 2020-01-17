@@ -5,7 +5,7 @@ ActiveAdmin.register Donation do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :grant_id, :donor, :date, :amount_cents
+  permit_params :grant_id, :donor, :date, :amount
   #
   # or
   #
@@ -14,5 +14,17 @@ ActiveAdmin.register Donation do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  controller do
+
+    def index
+      # Good
+      @donation =
+      # Bad
+      @post = Post.new(params[:post])
+
+      if @post.save
+        # ...
+      end
+    end
+  end
 end
