@@ -1,7 +1,5 @@
 ActiveAdmin.register Disbursement do
-  scope_to do
-    current_user.partner.grants.first unless current_user.admin?
-  end
+  scope_to :current_user, unless: proc{ current_user.admin? }
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -17,5 +15,5 @@ ActiveAdmin.register Disbursement do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
 end
