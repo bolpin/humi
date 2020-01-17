@@ -1,4 +1,7 @@
 ActiveAdmin.register Disbursement do
+  scope_to do
+    current_user.partner.grants.first unless current_user.admin?
+  end
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
