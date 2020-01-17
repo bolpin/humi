@@ -12,9 +12,9 @@ p2 = Partner.create!(name: 'Matts pizza', address: '12345 Main St')
 p3 = Partner.create!(name: 'Humi', address: '123456 Main St')
 
 # Users
-User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', partner: p3) if Rails.env.development?
-User.create!(email: 'partner@example.com', password: 'password', password_confirmation: 'password', partner: p1) if Rails.env.development?
-User.create!(email: 'partner@demo.com', password: 'password', password_confirmation: 'password', partner: p2) if Rails.env.development?
+User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', partner: p3, admin: true) if Rails.env.development?
+User.create!(email: 'partner@example.com', password: 'password', password_confirmation: 'password', partner: p1, admin: false) if Rails.env.development?
+User.create!(email: 'partner@demo.com', password: 'password', password_confirmation: 'password', partner: p2, admin: false) if Rails.env.development?
 
 
 # Grants
@@ -29,3 +29,5 @@ Donation.create!(grant: g2, donor: 'Travis S.', amount_cents: 20000, date: DateT
 # Disbursements
 Disbursement.create!(grant: g1, name: 'Olpin Family', landlord: 'Johnny Rose', move_in_amount_cents: 10000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now)
 Disbursement.create!(grant: g1, name: 'Rain Family', landlord: 'Riverview Suites', move_in_amount_cents: 2000, prevention_amount_cents: 20000, number_children: 1, date: DateTime.now)
+Disbursement.create!(grant: g2, name: 'Clay Family', landlord: 'Majestic Apts', move_in_amount_cents: 100000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now)
+Disbursement.create!(grant: g1, name: 'LeBlanc Family', landlord: 'Riverview Suites', move_in_amount_cents: 200000, prevention_amount_cents: 20000, number_children: 1, date: DateTime.now)
