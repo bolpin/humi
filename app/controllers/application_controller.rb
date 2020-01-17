@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   def grant
     current_user.partner.grants.first
   end
+
+  def scoped_user
+    current_user.partner unless current_user.admin?
+  end
 end

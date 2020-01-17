@@ -1,11 +1,14 @@
 ActiveAdmin.register Donation do
+  scope_to do
+    current_user.partner.grants.first unless current_user.admin?
+  end
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :grant_id, :donor, :date, :amount_cents
+  permit_params :grant_id, :donor, :date, :amount
   #
   # or
   #
@@ -14,5 +17,4 @@ ActiveAdmin.register Donation do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end

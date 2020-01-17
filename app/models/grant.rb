@@ -8,4 +8,8 @@ class Grant < ApplicationRecord
   def name
     "#{partner.name} #{date.year}"
   end
+
+  def scoped_user
+    partner.user unless partner.user.admin?
+  end
 end
