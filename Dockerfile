@@ -14,6 +14,8 @@ RUN apt-get update -qq \
          # Needed for asset compilation
     nodejs \
     yarn \
+    curl \
+    software-properties-common \
     # The following are used to trim down the size of the image by removing unneeded data
   && apt-get clean autoclean \
   && apt-get autoremove -y \
@@ -22,6 +24,10 @@ RUN apt-get update -qq \
     /var/lib/dpkg \
     /var/lib/cache \
     /var/lib/log
+
+RUN mkdir /build
+WORKDIR /build
+RUN curl https://www.npmjs.org/install.sh | sh
 
 # Create a directory for our application
 # and set it as the working directory
@@ -36,6 +42,8 @@ RUN bundle install
 
 # Copy over our application code
 ADD . $APP_HOME
+
+RUN yarn
 
 # Run our app
 CMD bundle exec rails s -p ${PORT} -b '0.0.0.0'
