@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Humi</title>
+    <title>Help Us Move In</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,19 +11,24 @@
 
   <body>
 
-    <p class="navbar-text float-right">
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
+    <%= link_to image_tag('humi-logo.png'), root_path %>
 
-    <%= link_to "Admin Dashboard", admin_root_path %>
-    <%= link_to "My Disbursements", disbursements_path %>
-    <%= link_to "My Donations", donations_path %>
+    <p class="navbar-text float-right">
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% if current_user&.admin? %>
+          <%= link_to "Admin Dashboard", admin_root_path %>
+        <% else %>
+          <%= link_to "My Dashboard", root_path %>
+          <%= link_to "My Disbursements", disbursements_path %>
+          <%= link_to "My Donations", donations_path %>
+        <% end %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
     </p>
-    <p class="notice"><%= notice %></p>
+    <p class="notice" id="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>

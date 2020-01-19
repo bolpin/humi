@@ -1,4 +1,56 @@
+<% if current_user %>
 <h1>
-  Help Us Move In
+  Dashboard for <%= current_user.partner.default_grant.name %> 
 </h1>
 
+
+<div class="row">
+  <div class="column">
+    <p>
+      <h3>
+      Number of Children Helped:
+      <span class='blue-amount'>
+      <%= current_user.partner.default_grant.total_children_helped %>
+      </span>
+      </h3>
+    </p>
+    <p>
+      <h3>
+      Move-in Disbursements:
+      <span class='green-amount'>
+        <%= current_user.partner.default_grant.total_move_in_amount_formatted %>
+      </span>
+      </h3>
+    </p>
+    <p>
+      <h3>
+      Prevention Disbursements:
+      <span class='green-amount'>
+        <%= current_user.partner.default_grant.total_prevention_amount_formatted %>
+      </span>
+      </h3>
+    </p>
+    <p>
+      <h3>
+      Community Donations:
+      <span class='green-amount'>
+        <%= current_user.partner.default_grant.total_community_donations_formatted %>
+      </span>
+      </h3>
+    </p>
+  </div>
+  <div class='column'>
+    <p></p>
+    <p>
+      <%= link_to 'Record a new Disbursement', new_disbursement_path, class: "btn" %>
+      <br/>
+      This is a move-in or prevention payment to a landlord or family.
+    </p>
+    <p>
+      <%= link_to 'Record a new Donation', new_donation_path, class: "btn" %>
+      <br/>
+      This is a donation from someone in your community to support this grant.
+    </p>
+  </div>
+</div>
+<% end %>

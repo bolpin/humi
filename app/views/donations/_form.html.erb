@@ -14,15 +14,18 @@
   <ul>
     <li>
       <%= form.label :donor %>
+      <br/>
       <%= form.text_field :donor %>
     </li>
     <li>
       <%= form.label :date %>
+      <br/>
       <%= form.date_field :date %>
     </li>
     <li>
       <%= form.label :amount, "Amount" %>
-      <%= form.number_field :amount, min: "0.01", step: "0.01" %>
+      <br/>
+      $<%= form.number_field :amount, min: "0.01", step: "0.01" %>
     </li>
   </ul>
   <div class="actions">

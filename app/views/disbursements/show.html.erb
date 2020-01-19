@@ -1,4 +1,26 @@
-<p id="notice"><%= notice %></p>
-
+<p>
+<strong>Family Name:</strong>
+<%= @disbursement.name %>
+</p>
+<p>
+<strong>Number of Children:</strong>
+<%= @disbursement.number_children %>
+</p>
+<p>
+<strong>Date:</strong>
+<%= @disbursement.date.strftime("%d/%m/%Y") %>
+</p>
+<p>
+<strong>Landlord:</strong>
+<%= @disbursement.landlord %>
+</p>
+<p>
+<strong>Move-in Amount:</strong>
+<%= @disbursement.move_in_amount.format %>
+</p>
+<p>
+<strong>Prevention Amount:</strong>
+<%= @disbursement.prevention_amount.format %>
+</p>
 <%= link_to 'Edit', edit_disbursement_path(@disbursement) %> |
 <%= link_to 'Back', disbursements_path %>

@@ -1,4 +1,14 @@
-<p id="notice"><%= notice %></p>
-
+<p>
+<strong>Donor Name:</strong>
+<%= @donation.donor %>
+</p>
+<p>
+<strong>Amount:</strong>
+<%= @donation.amount.format %>
+</p>
+<p>
+<strong>date:</strong>
+<%= @donation.date.strftime("%d/%m/%Y") %>
+</p>
 <%= link_to 'Edit', edit_donation_path(@donation) %> |
 <%= link_to 'Back', donations_path %>

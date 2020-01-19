@@ -1,31 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Disbursements</h1>
+<h1>Disbursements for <%= current_user.partner.default_grant.name %> </h1>
 
 <table>
   <thead>
     <tr>
-      <th>Grant</th>
+      <th>Date</th>
       <th>Name</th>
       <th>Landlord</th>
       <th>Number of Children</th>
       <th>Move In Amount</th>
       <th>Prevention Amount</th>
       <th></th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @disbursements.each do |disbursement| %>
+    <% current_user.partner.default_grant.disbursements.each do |disbursement| %>
       <tr>
-        <td><%= disbursement.grant.name %></td>
+        <td><%= disbursement.date.strftime('%m/%d/%Y') %></td>
         <td><%= disbursement.name %></td>
         <td><%= disbursement.landlord %></td>
         <td><%= disbursement.number_children %></td>
-        <td><%= disbursement.move_in_amount_cents %></td>
-        <td><%= disbursement.prevention_amount_cents %></td>
-        <td><%= link_to 'Show', disbursement %></td>
+        <td><%= disbursement.move_in_amount.format %></td>
+        <td><%= disbursement.prevention_amount.format %></td>
         <td><%= link_to 'Edit', edit_disbursement_path(disbursement) %></td>
         <td><%= link_to 'Destroy', disbursement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
