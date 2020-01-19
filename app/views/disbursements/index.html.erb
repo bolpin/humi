@@ -24,7 +24,7 @@
         <td><%= disbursement.move_in_amount.format %></td>
         <td><%= disbursement.prevention_amount.format %></td>
         <td><%= link_to 'Edit', edit_disbursement_path(disbursement) %></td>
-        <td><%= link_to 'Destroy', disbursement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', disbursement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

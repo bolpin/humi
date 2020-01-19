@@ -17,7 +17,7 @@
         <td><%= donation.date.strftime("%m/%d/%Y") %></td>
         <td><%= donation.amount.format %></td>
         <td><%= link_to 'Edit', edit_donation_path(donation) %></td>
-        <td><%= link_to 'Destroy', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
