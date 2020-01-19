@@ -13,3 +13,66 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  padding: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+input[type=text] {
+  max-width: 12rem;
+}
+
+input[type=date] {
+  max-width: 9rem;
+}
+
+input[type=number] {
+  max-width: 5rem;
+}
+
+.blue-amount {
+  color: blue;
+}
+
+.green-amount {
+  color: mediumaquamarine;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a.btn:link, a.btn:visited {
+  background-color: #1F618D;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 20rem;
+}
+
+a.btn:hover, a.btn:active {
+  background-color: #2980B9;
+}
+
+.notice {
+  color: #9F6000;
+  background-color: #FEEFB3;
+}
+.alert {
+  color: #D8000C;
+  background-color: #FFD2D2;
+}

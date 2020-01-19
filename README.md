@@ -6,10 +6,9 @@
 rails db:create
 rails db:migrate
 rails db:seed
+./bin/webpack-dev-server
 rails server
 ```
-
-navigate to `localhost:3000`
 For user credentials see db/seeds.rb.
 
 ## Docker
