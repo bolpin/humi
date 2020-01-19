@@ -8,9 +8,9 @@ class Ability
 
     if user.admin?
       can :manage, :all
-    # else
-    #   can :read, Donation
-    #   can :read, Disbursement
+    else
+      can :read, Donation
+      can :read, Disbursement
     #   can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
     end
   end
