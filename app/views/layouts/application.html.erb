@@ -11,12 +11,10 @@
 
   <body>
 
-    <%= link_to image_tag('humi-logo.png'), root_path %>
-
     <p class="navbar-text float-right">
+      <%= link_to image_tag('humi-logo.png', {class: 'logo-img'}), root_path %>
+      <span>
       <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         <% if current_user&.admin? %>
           <%= link_to "Admin Dashboard", admin_root_path %>
         <% else %>
@@ -24,9 +22,12 @@
           <%= link_to "My Disbursements", disbursements_path %>
           <%= link_to "My Donations", donations_path %>
         <% end %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        Logged in as <strong><%= current_user.email %></strong>.
       <% else %>
         <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
       <% end %>
+      </span>
     </p>
     <p class="notice" id="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

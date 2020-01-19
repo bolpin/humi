@@ -15,7 +15,7 @@
  */
 
 body {
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
 h3 {
@@ -34,8 +34,25 @@ input[type=number] {
   max-width: 5rem;
 }
 
+.navbar-text {
+  margin: 1rem 0;
+}
+
+.navbar-text span {
+  vertical-align: top;
+}
+
+.navbar-text span a {
+  margin: 1em;
+}
+
+.logo-img {
+  width: 100px;
+  height: 40px;
+}
+
 .blue-amount {
-  color: blue;
+  color: #2D2E93;
 }
 
 .green-amount {
@@ -47,7 +64,6 @@ input[type=number] {
   width: 50%;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -55,7 +71,9 @@ input[type=number] {
 }
 
 a.btn:link, a.btn:visited {
-  background-color: #1F618D;
+  /* background-color: #1F618D; */
+  background-color: #2C277A;
+  font-size: 1.2rem;
   color: white;
   padding: 14px 25px;
   text-align: center;
@@ -65,7 +83,8 @@ a.btn:link, a.btn:visited {
 }
 
 a.btn:hover, a.btn:active {
-  background-color: #2980B9;
+  /* background-color: #2980B9; */
+  background-color: #56277A;
 }
 
 .notice {
