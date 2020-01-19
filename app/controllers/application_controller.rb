@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def access_denied(exception)
     redirect_to root_path, alert: exception.message
   end
-  
+
   private
 
   def grant
@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
 
   def scoped_user
     current_user.partner unless current_user.admin?
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    request.referrer
   end
 end
