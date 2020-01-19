@@ -27,7 +27,7 @@ class DonationsController < ApplicationController
   # POST /donations
   # POST /donations.json
   def create
-    @donation = Donation.new(donation_params)
+    @donation = Donation.new(donation_params.merge({grant: default_grant}))
 
     respond_to do |format|
       if @donation.save
@@ -77,5 +77,9 @@ class DonationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
       params.require(:donation).permit(:donor, :date, :amount)
+    end
+
+    def default_grant
+      current_user.partner.grants.first
     end
 end

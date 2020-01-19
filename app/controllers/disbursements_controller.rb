@@ -69,7 +69,7 @@ class DisbursementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disbursement_params
-      params.require(:disbursement).permit(:number_children, :name, :landlord, :move_in_amount_cents, :prevention_amount_cents)
+      params.require(:disbursement).permit(:number_children, :name, :date, :landlord, :move_in_amount, :prevention_amount)
     end
 
     def default_grant
