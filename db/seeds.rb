@@ -20,8 +20,8 @@ User.create!(email: 'partner@demo.com', password: 'password', password_confirmat
 
 # Grants
 g0 = Grant.create!(partner: p3, amount_cents: 0, date: DateTime.now, case_management_percentage: 0)
-g1 = Grant.create!(partner: p1, amount_cents: 1000000, date: DateTime.now, case_management_percentage: 10)
-g2 = Grant.create!(partner: p2, amount_cents: 1000000, date: DateTime.now, case_management_percentage: 10)
+g1 = Grant.create!(partner: p1, amount_cents: 1000000, date: DateTime.now-1.year, case_management_percentage: 10)
+g2 = Grant.create!(partner: p2, amount_cents: 1000000, date: DateTime.now-1.year, case_management_percentage: 10)
 
 # Donations
 Donation.create!(grant: g1, donor: 'Andrew P.', amount_cents: 10000, date: DateTime.now)
@@ -32,5 +32,9 @@ Donation.create!(grant: g2, donor: 'Matt B.', amount_cents: 20000, date: DateTim
 # Disbursements
 Disbursement.create!(grant: g1, name: 'Williams Family', landlord: 'Johnny Rose', move_in_amount_cents: 10000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now)
 Disbursement.create!(grant: g1, name: 'Miller Family', landlord: 'Riverview Suites', move_in_amount_cents: 2000, prevention_amount_cents: 20000, number_children: 1, date: DateTime.now)
-Disbursement.create!(grant: g2, name: 'Carey Family', landlord: 'Majestic Apts', move_in_amount_cents: 100000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now)
-Disbursement.create!(grant: g1, name: 'Jones Family', landlord: 'Riverview Suites', move_in_amount_cents: 200000, prevention_amount_cents: 20000, number_children: 1, date: DateTime.now)
+Disbursement.create!(grant: g2, name: 'Carey Family', landlord: 'Majestic Apts', move_in_amount_cents: 10000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now)
+Disbursement.create!(grant: g1, name: 'Jones Family', landlord: 'Riverview Suites', move_in_amount_cents: 29000, prevention_amount_cents: 25000, number_children: 1, date: DateTime.now - 3.months)
+Disbursement.create!(grant: g1, name: 'Jons Family', landlord: 'Riverview Suites', move_in_amount_cents: 20500, prevention_amount_cents: 20000, number_children: 1, date: DateTime.now - 2.months)
+Disbursement.create!(grant: g1, name: 'Finer Family', landlord: 'Riverview Suites', move_in_amount_cents: 24000, prevention_amount_cents: 25000, number_children: 1, date: DateTime.now - 1.month)
+Disbursement.create!(grant: g1, name: 'Wu Family', landlord: 'Riverview Suites', move_in_amount_cents: 20030, prevention_amount_cents: 20100, number_children: 1, date: DateTime.now - 2.months)
+Disbursement.create!(grant: g1, name: 'Sher Family', landlord: 'Johnny Rose', move_in_amount_cents: 1000, prevention_amount_cents: 0, number_children: 3, date: DateTime.now - 8.months)
