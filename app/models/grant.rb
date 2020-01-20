@@ -2,6 +2,8 @@ class Grant < ApplicationRecord
   belongs_to :partner
   has_many :disbursements
   has_many :donations
+
+  validates_presence_of :date, :amount_cents
   
   monetize :amount_cents
 
@@ -9,6 +11,7 @@ class Grant < ApplicationRecord
     "#{partner.name} #{date.year} HUMI Grant"
   end
 
+  # is this needed?
   def scoped_user
     partner.user unless partner.user.admin?
   end
