@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "disbursements/index", type: :view do
 
-  let(:disbursement) {
-    build_stubbed(:disbursement)
-  }
+  let(:disbursement) { build_stubbed(:disbursement) }
+  let(:grant) { build_stubbed(:grant) }
+  let(:partner) { build_stubbed(:partner, grants: [grant]) }
+  let(:regular_user) { build_stubbed(:user, partner: partner) }
   
   before(:each) do
-    sign_in regular_user
+    view.stub(:current_user) { regular_user }
     assign(:disbursements, [
       disbursement, disbursement
     ])

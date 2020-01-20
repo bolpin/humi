@@ -6,25 +6,17 @@ RSpec.describe DisbursementsController, type: :controller do
   #   build_stubbed(:partner)
   # }
 
-  let(:grant) {
-    build_stubbed(:grant)
-  }
+  let(:grant) { build_stubbed(:grant) }
 
   let(:valid_attributes) {
     attributes_for(:disbursement).merge(grant_id: grant.id)
   }
 
-  let(:invalid_attributes) {
-    {}
-  }
+  let(:invalid_attributes) { {} }
 
-  let(:disbursement) {
-    build_stubbed(:disbursement)
-  }
+  let(:disbursement) { build_stubbed(:disbursement) }
 
-  let(:regular_user) {
-    build_stubbed(:user)
-  }
+  let(:regular_user) { build_stubbed(:user) }
 
   describe "GET #index" do
     it "returns a success response" do

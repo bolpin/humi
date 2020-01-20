@@ -10,9 +10,7 @@ RSpec.describe DonationsController, type: :controller do
     attributes_for(:donation).merge(grant_id: grant.id)
   }
 
-  let(:invalid_attributes) {
-    {}
-  }
+  let(:invalid_attributes) { {} }
 
   let(:donation) {
     build_stubbed(:donation)
