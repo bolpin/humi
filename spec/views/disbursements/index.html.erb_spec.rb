@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "disbursements/index", type: :view do
+
+  let(:disbursement) {
+    build_stubbed(:disbursement)
+  }
+  
   before(:each) do
+    sign_in regular_user
     assign(:disbursements, [
-      Disbursement.create!(),
-      Disbursement.create!()
+      disbursement, disbursement
     ])
   end
 
