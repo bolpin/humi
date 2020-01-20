@@ -4,4 +4,5 @@ class Disbursement < ApplicationRecord
 
   monetize :move_in_amount_cents
   monetize :prevention_amount_cents
+
 end

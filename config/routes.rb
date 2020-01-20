@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :disbursements
   resources :donations
 
+  get '/report', to: 'report#index'
+
   root to: "home#index"
 end

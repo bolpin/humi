@@ -3,4 +3,5 @@ class Donation < ApplicationRecord
   validates_presence_of :amount_cents, :date
 
   monetize :amount_cents
+
 end

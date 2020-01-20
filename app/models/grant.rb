@@ -28,6 +28,14 @@ class Grant < ApplicationRecord
   def total_children_helped
     disbursements.reduce(0){|sum, d| sum + d.number_children }
   end
+
+  def donations_by_year_and_month(desired_year, desired_month)
+    Donation.where('grant_id = ?', id).where('extract(year  from date) = ?', desired_year).where('extract(month from date) = ?', desired_month)
+  end
+
+  def disbursements_by_year_and_month(desired_year, desired_month)
+    Disbursement.where('grant_id = ?', id).where('extract(year  from date) = ?', desired_year).where('extract(month from date) = ?', desired_month)
+  end
   
   private
 
@@ -42,4 +50,5 @@ class Grant < ApplicationRecord
   def donation_total_cents
     donations.reduce(0){|sum, d| sum + d.amount_cents }
   end
+
 end
