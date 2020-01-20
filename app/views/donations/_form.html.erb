@@ -1,6 +1,6 @@
 <%= form_with(model: donation, local: true) do |form| %>
   <% if donation.errors.any? %>
-    <div id="error_explanation">
+    <div class="error">
       <h2><%= pluralize(donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
 
       <ul>

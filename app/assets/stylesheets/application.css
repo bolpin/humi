@@ -71,7 +71,6 @@ input[type=number] {
 }
 
 a.btn:link, a.btn:visited {
-  /* background-color: #1F618D; */
   background-color: #2C277A;
   font-size: 1.2rem;
   color: white;
@@ -83,7 +82,6 @@ a.btn:link, a.btn:visited {
 }
 
 a.btn:hover, a.btn:active {
-  /* background-color: #2980B9; */
   background-color: #56277A;
 }
 
@@ -91,7 +89,8 @@ a.btn:hover, a.btn:active {
   color: #9F6000;
   background-color: #FEEFB3;
 }
-.alert {
-  color: #D8000C;
-  background-color: #FFD2D2;
+
+.error {
+  color: red;
 }
+

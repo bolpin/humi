@@ -1,6 +1,6 @@
 <%= form_with(model: disbursement, local: true) do |form| %>
   <% if disbursement.errors.any? %>
-    <div id="error_explanation">
+    <div class="error">
       <h2><%= pluralize(disbursement.errors.count, "error") %> prohibited this disbursement from being saved:</h2>
 
       <ul>
