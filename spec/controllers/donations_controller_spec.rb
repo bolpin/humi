@@ -115,7 +115,6 @@ RSpec.describe DonationsController, type: :controller do
 
     it "redirects to the donations list" do
       partner = Partner.create! attributes_for(:partner)
-      require 'pry'; binding.pry
       grant = Grant.create! attributes_for(:grant).merge(partner: partner)
       donation = Donation.create! attributes_for(:disbursement).merge(grant: grant)
       delete :destroy, params: {id: donation.to_param}

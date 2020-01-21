@@ -18,19 +18,17 @@ RSpec.describe DisbursementsController, type: :controller do
 
   let(:regular_user) { build_stubbed(:user) }
 
-  before do
-    login_user
-  end
 
   describe "GET #index" do
+    # login_user
     it "returns a success response" do
-      sign_in regular_user
       get :index, params: {} 
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
+    login_user
     it "returns a success response" do
       get :show, params: {id: disbursement.to_param}
       expect(response).to be_successful
@@ -38,6 +36,7 @@ RSpec.describe DisbursementsController, type: :controller do
   end
  
   describe "GET #new" do
+    login_user
     it "returns a success response" do
       get :new, params: {}, session: valid_session
       expect(response).to be_successful
@@ -45,6 +44,7 @@ RSpec.describe DisbursementsController, type: :controller do
   end
 
   describe "GET #edit" do
+    login_user
     it "returns a success response" do
       disbursement = Disbursement.create! valid_attributes
       get :edit, params: {id: disbursement.to_param}, session: valid_session
@@ -53,6 +53,7 @@ RSpec.describe DisbursementsController, type: :controller do
   end
 
   describe "POST #create" do
+    login_user
     context "with valid params" do
       it "creates a new Disbursement" do
         expect {
@@ -75,6 +76,7 @@ RSpec.describe DisbursementsController, type: :controller do
   end
 
   describe "PUT #update" do
+    login_user
     context "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -104,6 +106,7 @@ RSpec.describe DisbursementsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    login_user
     it "destroys the requested disbursement" do
       disbursement = Disbursement.create! valid_attributes
       expect {
