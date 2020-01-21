@@ -18,6 +18,10 @@ RSpec.describe DisbursementsController, type: :controller do
 
   let(:regular_user) { build_stubbed(:user) }
 
+  before do
+    login_user
+  end
+
   describe "GET #index" do
     it "returns a success response" do
       sign_in regular_user
