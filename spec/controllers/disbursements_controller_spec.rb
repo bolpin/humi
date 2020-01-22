@@ -20,7 +20,7 @@ RSpec.describe DisbursementsController, type: :controller do
 
 
   describe "GET #index" do
-    # login_user
+    login_user
     it "returns a success response" do
       get :index, params: {} 
       expect(response).to be_successful
