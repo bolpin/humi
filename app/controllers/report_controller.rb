@@ -35,7 +35,7 @@ class ReportController < ApplicationController
 
     until(year >= end_year && month > end_month) # Do we want to capture the current month?
       result[index] = []
-      
+
       grant.disbursements_by_year_and_month(year, month).each do |disbursement|
         record = {}
         record[:year] = year
@@ -57,7 +57,7 @@ class ReportController < ApplicationController
       end
 
     end
-    result
+    result.to_json
   end
 
   def start_year
