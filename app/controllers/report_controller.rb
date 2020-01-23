@@ -31,11 +31,21 @@ class ReportController < ApplicationController
     year = start_year
     month = start_month
     index = 0
-    result = Hash.new([])
+    result = {donations: {}, disbursements: {}}
 
-    until(year >= end_year && month > end_month) # Do we want to capture the current month?
-      result[index] = []
+    until(year >= end_year && month > end_month)
+      result[:donations][index] = []
+      result[:disbursements][index] = []
 
+      grant.donations_by_year_and_month(year, month).each do |donation|
+        record = {}
+        record[:year] = year
+        record[:month] = month
+        record[:date] = donation.date.strftime("%m/%d/%Y")
+        record[:donor] = donation.donor
+        record[:amount] = donation.amount.format
+        result[:donations][index] << record
+      end
       grant.disbursements_by_year_and_month(year, month).each do |disbursement|
         record = {}
         record[:year] = year
@@ -46,7 +56,7 @@ class ReportController < ApplicationController
         record[:number_children] = disbursement.number_children
         record[:move_in_amount] = disbursement.move_in_amount.format
         record[:prevention_amount] = disbursement.prevention_amount.format
-        result[index] << record
+        result[:disbursements][index] << record
       end
 
       month = month + 1
