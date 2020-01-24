@@ -41,19 +41,19 @@ end
   grant['donations'][index.to_s].each_with_index do |donation, idx|
     row_number = DONATIONS_FIRST_ROW + idx
     require 'pry';binding.pry
-    worksheet[row_number][1].change_contents(donation['donor'], worksheet[row_number][1].formula)
-    worksheet[row_number][5].change_contents(donation['date'], worksheet[row_number][5].formula)
-    worksheet[row_number][7].change_contents(donation['amount'], worksheet[row_number][7].formula)
+    worksheet[1][row_number].change_contents(donation['donor'], worksheet[1][row_number].formula)
+    worksheet[5][row_number].change_contents(donation['date'], worksheet[5][row_number].formula)
+    worksheet[7][row_number].change_contents(donation['amount'], worksheet[7][row_number].formula)
   end
 
   grant['disbursements'][index.to_s].each_with_index do |disbursement, idx|
     row_number = DISBURSEMENTS_FIRST_ROW + idx 
-    worksheet[row_number][1].change_contents(disbursement['name'], worksheet[row_number][7].formula)
-    worksheet[row_number][2].change_contents(disbursement['date'], worksheet[row_number][7].formula)
-    worksheet[row_number][3].change_contents(disbursement['number_children'], worksheet[row_number][7].formula)
-    worksheet[row_number][4].change_contents(disbursement['landlord'], worksheet[row_number][7].formula)
-    worksheet[row_number][5].change_contents(disbursement['move_in_amount'], worksheet[row_number][7].formula)
-    worksheet[row_number][6].change_contents(disbursement['prevention_amount'], worksheet[row_number][7].formula)
+    worksheet[1][row_number].change_contents(disbursement['name'], worksheet[1][row_number].formula)
+    worksheet[2][row_number].change_contents(disbursement['date'], worksheet[2][row_number].formula)
+    worksheet[3][row_number].change_contents(disbursement['number_children'], worksheet[3][row_number].formula)
+    worksheet[4][row_number].change_contents(disbursement['landlord'], worksheet[4][row_number].formula)
+    worksheet[5][row_number].change_contents(disbursement['move_in_amount'], worksheet[5][row_number].formula)
+    worksheet[6][row_number].change_contents(disbursement['prevention_amount'], worksheet[6][row_number].formula)
   end
 end
 
