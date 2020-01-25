@@ -1,8 +1,8 @@
 <% if current_user&.admin? %>
 
-  <%= form_with(url: "/report.json", method: "get") do %>
+  <%= form_with(url: "/report", method: "get") do %>
     <%= collection_select(:report, :grant_id, Grant.all, :id, :name) %>
-    <%= submit_tag("Download report data (JSON format)") %>
+    <%= submit_tag("Download report data") %>
   <% end %>
 
 <% elsif current_user %>

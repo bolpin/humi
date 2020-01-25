@@ -2,15 +2,15 @@ class ReportController < ApplicationController
 
   def index
     # render plain: json_report.to_s
-    # send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}.json"
-    respond_to do |format|
-      format.json do 
-        send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}", mime_type: Mime::Type.lookup_by_extension('txt')
-      end 
-    end
+    send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}.json", content_type: Mime::TEXT
+
+    # respond_to do |format|
+    #   format.json do 
+    #     :content_type => Mime::TEXT
+    #     send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}", mime_type: Mime::Type.lookup_by_extension('txt')
+    #   end 
+    # end
   end
-
-
 
   private
 
