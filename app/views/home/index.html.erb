@@ -1,5 +1,4 @@
 <% if current_user&.admin? %>
-  test bco
 
   <%= form_with(url: "/report.json", method: "get") do %>
     <%= collection_select(:report, :grant_id, Grant.all, :id, :name) %>
