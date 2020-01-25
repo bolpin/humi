@@ -1,4 +1,5 @@
 <% if current_user&.admin? %>
+  test
 
   <%= form_with(url: "/report", method: "get") do %>
     <%= collection_select(:report, :grant_id, Grant.all, :id, :name) %>
