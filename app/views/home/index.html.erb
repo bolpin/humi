@@ -1,4 +1,13 @@
-<% if current_user %>
+<% if current_user&.admin? %>
+
+  <%= form_with(url: "/report", method: "get") do %>
+    <%= label_tag(:report, "Grant:") %>
+    <%= collection_select(:report, :grant_id, Grant.all, :id, :name) %>
+    <%= submit_tag("Generate raw report data (JSON)", class: 'btn') %>
+  <% end %>
+
+<% elsif current_user %>
+  
 <h1>
   Dashboard for <%= current_user.partner.default_grant.name %> 
 </h1>
@@ -51,11 +60,7 @@
       <br/>
       This is a donation from someone in your community to support this grant.
     </p>
-    <p>
-    <%= link_to 'Generate Grant Report(comma-separted values)', "/report", class: "btn" %>
-      <br/>
-      Generate a CSV file of monthly grant performance.
-    </p>
+    
   </div>
 </div>
 <% end %>

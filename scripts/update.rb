@@ -1,59 +1,68 @@
 require 'json'
-
 require 'rubyXL'
+require 'rubyXL/convenience_methods/cell'
+
 workbook = RubyXL::Parser.parse './humi-template.xlsx'
 
 DISBURSEMENTS_FIRST_ROW = 19
 DONATIONS_FIRST_ROW = 5 
 
-f = File.read('rpt.json')
+grant = JSON.parse(File.read('rpt.json'))
 
-grant = JSON.parse(f)
+# (0..12).each do |month_index|
+#   new_donation_sheet = workbook.add_worksheet("donations #{month_index}")
+#
+#   grant['donations'][month_index.to_s].each_with_index do |donation, idx|
+#     new_donation_sheet.add_cell(idx, 0, donation['donor'])
+#     new_donation_sheet.add_cell(idx, 1, donation['date'])
+#     new_donation_sheet.add_cell(idx, 2, donation['amount'])
+#   end
+#
+#   new_disbursement_sheet = workbook.add_worksheet("disbursements #{month_index}")
+#
+#   grant['disbursements'][month_index.to_s].each_with_index do |disbursement, idx|
+#     row = new_disbursement_sheet[idx]
+#     new_disbursement_sheet.add_cell(idx, 0, disbursement['name'])
+#     new_disbursement_sheet.add_cell(idx, 1, disbursement['date'])
+#     new_disbursement_sheet.add_cell(idx, 2, disbursement['number_children'])
+#     new_disbursement_sheet.add_cell(idx, 3, disbursement['landlord'])
+#     new_disbursement_sheet.add_cell(idx, 4, disbursement['move_in_amount'])
+#     new_disbursement_sheet.add_cell(idx, 5, disbursement['prevention_amount'])
+#   end
+# end
 
+(0..11).each do |month_index|
+  worksheet = workbook[month_index + 2]
 
-if false
-  (0..11).each do |index|
-    new_donation_sheet = workbook.add_worksheet("donations #{index}")
-
-    grant['donations'][index.to_s].each_with_index do |donation, idx|
-      new_donation_sheet.add_cell(idx, 0, donation['donor'])
-      new_donation_sheet.add_cell(idx, 1, donation['date'])
-      new_donation_sheet.add_cell(idx, 2, donation['amount'])
-    end
-
-    new_disbursement_sheet = workbook.add_worksheet("disbursements #{index}")
-
-    grant['disbursements'][index.to_s].each_with_index do |disbursement, idx|
-      row = new_disbursement_sheet[idx]
-      new_disbursement_sheet.add_cell(idx, 0, disbursement['name'])
-      new_disbursement_sheet.add_cell(idx, 1, disbursement['date'])
-      new_disbursement_sheet.add_cell(idx, 2, disbursement['number_children'])
-      new_disbursement_sheet.add_cell(idx, 3, disbursement['landlord'])
-      new_disbursement_sheet.add_cell(idx, 4, disbursement['move_in_amount'])
-      new_disbursement_sheet.add_cell(idx, 5, disbursement['prevention_amount'])
+  grant['donations'][month_index.to_s].each_with_index do |donation, idx|
+    row = DONATIONS_FIRST_ROW + idx
+    { 'donor' => 1,
+      'date' => 5,
+      'amount' => 7
+    }.each do |field, column|
+      if worksheet[row][column].nil?
+        worksheet.add_cell(row, column, donation[field])
+      else
+        worksheet[row][column].change_contents(donation[field])
+      end
     end
   end
-end
 
-(0..11).each do |index|
-  worksheet = workbook[index + 2]
-
-  grant['donations'][index.to_s].each_with_index do |donation, idx|
-    row_number = DONATIONS_FIRST_ROW + idx
-    require 'pry';binding.pry
-    worksheet[1][row_number].change_contents(donation['donor'], worksheet[1][row_number].formula)
-    worksheet[5][row_number].change_contents(donation['date'], worksheet[5][row_number].formula)
-    worksheet[7][row_number].change_contents(donation['amount'], worksheet[7][row_number].formula)
-  end
-
-  grant['disbursements'][index.to_s].each_with_index do |disbursement, idx|
-    row_number = DISBURSEMENTS_FIRST_ROW + idx 
-    worksheet[1][row_number].change_contents(disbursement['name'], worksheet[1][row_number].formula)
-    worksheet[2][row_number].change_contents(disbursement['date'], worksheet[2][row_number].formula)
-    worksheet[3][row_number].change_contents(disbursement['number_children'], worksheet[3][row_number].formula)
-    worksheet[4][row_number].change_contents(disbursement['landlord'], worksheet[4][row_number].formula)
-    worksheet[5][row_number].change_contents(disbursement['move_in_amount'], worksheet[5][row_number].formula)
-    worksheet[6][row_number].change_contents(disbursement['prevention_amount'], worksheet[6][row_number].formula)
+  grant['disbursements'][month_index.to_s].each_with_index do |disbursement, idx|
+    row = DISBURSEMENTS_FIRST_ROW + idx 
+    { 'name' => 1,
+      'date' => 2,
+      'number_children' => 3,
+      'landlord' => 4,
+      'move_in_amount' => 5,
+      'prevention_amount' => 6,
+    }.each do |field, column|
+      if worksheet[row][column].nil?
+        worksheet.add_cell(row, column, disbursement[field])
+      else
+        worksheet[row][column].change_contents(disbursement[field])
+      end
+    end
   end
 end
 

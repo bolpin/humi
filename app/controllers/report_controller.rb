@@ -1,31 +1,10 @@
 class ReportController < ApplicationController
+
   def index
     render plain: json_report.to_s
   end
 
   private
-
-  def csv_report
-    result = "month, year, move_in_amount, prevention_amount, name, landlord, number_children\n"
-    year = start_year
-    month = start_month
-    index = 0
-
-    until(year >= end_year && month > end_month) # Do we want to capture the current month?
-      grant.disbursements_by_year_and_month(year, month).each do |disbursement|
-        result << "#{index},#{year},#{month},#{disbursement.move_in_amount},#{disbursement.prevention_amount},#{disbursement.name},#{disbursement.landlord},#{disbursement.number_children}\n"
-      end
-
-      month = month + 1
-      index = index + 1
-      if month > 12
-        year = year + 1
-        month = 1
-      end
-
-    end
-    result
-  end
 
   def json_report
     year = start_year
@@ -46,6 +25,7 @@ class ReportController < ApplicationController
         record[:amount] = donation.amount.format
         result[:donations][index] << record
       end
+
       grant.disbursements_by_year_and_month(year, month).each do |disbursement|
         record = {}
         record[:year] = year
@@ -67,7 +47,7 @@ class ReportController < ApplicationController
       end
 
     end
-    result.to_json
+    JSON.pretty_generate(result)
   end
 
   def start_year
@@ -87,7 +67,7 @@ class ReportController < ApplicationController
   end
 
   def grant 
-    current_user.partner.default_grant
+    Grant.find(params['report']['grant_id'])
   end
 
 end
