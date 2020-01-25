@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 # Partners
-p1 = Partner.create!(name: 'Skagit Kiwanas', address: '1234 Elm St')
+p1 = Partner.create!(name: 'Skagit Kiwanis', address: '1234 Elm St')
 p2 = Partner.create!(name: 'Family Promise of Colorado Springs', address: '12345 Cedar Ave')
 p3 = Partner.create!(name: 'HUMI', address: '123456 Main St')
 p4 = Partner.create!(name: 'First Congregational Church of Everett', address: '12 Boylston Ave')
