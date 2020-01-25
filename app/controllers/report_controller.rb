@@ -1,8 +1,8 @@
 class ReportController < ApplicationController
 
   def index
-    # render plain: json_report.to_s
-    send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}.json"
+    render plain: json_report.to_s
+    # send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}.json"
   end
 
   private
