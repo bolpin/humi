@@ -4,7 +4,7 @@ class Grant < ApplicationRecord
   has_many :donations
 
   validates_presence_of :date, :amount_cents
-  
+
   monetize :amount_cents
 
   def name
@@ -39,7 +39,7 @@ class Grant < ApplicationRecord
   def disbursements_by_year_and_month(desired_year, desired_month)
     Disbursement.where('grant_id = ?', id).where('extract(year  from date) = ?', desired_year).where('extract(month from date) = ?', desired_month)
   end
-  
+
   private
 
   def move_in_total_cents

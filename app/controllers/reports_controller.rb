@@ -3,6 +3,8 @@ class ReportsController < ApplicationController
   include ActionController::DataStreaming # for send_data/send_file
 
   def index
+  end
+
     # render plain: json_report.to_s
     # send_data(json_report.to_json, type: 'text/json; charset=utf-8', filename: "#{grant.name.gsub(/ /, '_')}.json")
 
@@ -12,21 +14,20 @@ class ReportsController < ApplicationController
     #     send_data json_report.to_s, filename: "#{grant.name.gsub(/ /, '_')}", mime_type: Mime::Type.lookup_by_extension('txt')
     #   end
     # end
-  end
 
   def new
     respond_to do |format|
-      format.html # show.html.erb
+      # format.html
       format.json { render json: json_report }
     end
+
   end
 
   private
 
   def json_report
-    year = start_year
-    month = start_month
-    grant = find_grant
+
+    foo = grant
 
     result = {
       grant: {
@@ -39,6 +40,8 @@ class ReportsController < ApplicationController
     }
 
     index = 0
+    year = start_year
+    month = start_month
     until(year >= end_year && month > end_month)
       result[:donations][index] = []
       result[:disbursements][index] = []
@@ -68,6 +71,7 @@ class ReportsController < ApplicationController
 
       month = month + 1
       index = index + 1
+
       if month > 12
         year = year + 1
         month = 1
@@ -79,11 +83,11 @@ class ReportsController < ApplicationController
   end
 
   def start_year
-    grant.date.year
+    @grant.date.year
   end
 
   def start_month
-    grant.date.month
+    @grant.date.month
   end
 
   def end_year
@@ -94,8 +98,8 @@ class ReportsController < ApplicationController
     Time.now.month
   end
 
-  def find_grant
-    Grant.find(params['report']['grant_id'])
+  def grant
+    @grant ||= Grant.find(params['grant_id'])
   end
 
 end

@@ -1,14 +1,26 @@
 <% if current_user&.admin? %>
-
-  <%= form_with(url: "/report", method: "get") do %>
+  <%= form_with(url: "/reports/new.json", method: "get") do %>
     <%= collection_select(:report, :grant_id, Grant.all, :id, :name) %>
     <%= submit_tag("Download report data") %>
   <% end %>
 
+  <h1> Reports </h1>
+
+  <ul>
+  <% Grant.all.each do |grant| %>
+    <li>
+      <a href="/reports/new.json?grant_id=<%=grant.id%>"><%= grant.name %></a>
+      <br/>
+      ID: <%= grant.id %>
+    </li>
+  <% end %>
+  </ul>
+
+
 <% elsif current_user %>
-  
+
 <h1>
-  Dashboard for <%= current_user.partner.default_grant.name %> 
+  Dashboard for <%= current_user.partner.default_grant.name %>
 </h1>
 
 
